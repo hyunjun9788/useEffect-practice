@@ -1,31 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
 import {useState, useEffect} from "react";
+import Timer from "./component/Timer";
 
 function App() {
+    const [showTimer, setShowTimer] = useState(false)
 
-  const [count,setCount] = useState(1);
-  const [name, setName] = useState("")
-  const handleCountUpdate = () => {
-    setCount(count+1)
-  }
+    return (
 
-  const handleInputChange=(e)=>{
-    setName(e.target.value)
-  }
-  //렌더링 될때마다 매번 실행됨
-  useEffect(()=>{
-    console.log('count 변화')
-
-  },[count])
-  return (
-    <div>
-      <button onClick={handleCountUpdate}>Update</button>
-      <span>count: {count}</span>
-      <input type='text' value={name} onChange={handleInputChange}/>
-      <span>name: {name}</span>
-    </div>
-  );
+        <div>
+            {showTimer && <Timer/>}
+            <button onClick={() => setShowTimer(!showTimer)}>Toggle Timer</button>
+        </div>
+    );
 }
 
 export default App;
