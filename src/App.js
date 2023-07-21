@@ -1,23 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
+import {useState, useEffect} from "react";
 
 function App() {
+
+  const [count,setCount] = useState(1);
+  const [name, setName] = useState("")
+  const handleCountUpdate = () => {
+    setCount(count+1)
+  }
+
+  const handleInputChange=(e)=>{
+    setName(e.target.value)
+  }
+  //렌더링 될때마다 매번 실행됨
+  useEffect(()=>{
+    console.log('count 변화')
+
+  },[count])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={handleCountUpdate}>Update</button>
+      <span>count: {count}</span>
+      <input type='text' value={name} onChange={handleInputChange}/>
+      <span>name: {name}</span>
     </div>
   );
 }
